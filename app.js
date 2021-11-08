@@ -33,7 +33,6 @@ const p5 = document.createElement('p');
 const p6 = document.createElement('p');
 third.append(p5);
 third.append(p6);
-axios.get(`https://friends-quotes-api.herokuapp.com/quotes/random`)
 async function quoteFunc() {
   try {
     const quoteJS3 = await axios.get(`https://friends-quotes-api.herokuapp.com/quotes/random`);
@@ -54,7 +53,19 @@ async function tvMazeFunc() {
     const finalEp = await axios.get(`https://api.tvmaze.com/shows/38963/episodebynumber?season=2&number=8`);
     p7.innerText = finalEp.data.name;
   } catch (err) {
-    console.log(error);
+    console.log(err);
   }
 }
 tvMazeFunc();
+
+// BONUS
+const img = document.createElement(`img`);
+const body = document.querySelector(`body`);
+axios.get(`https://pokeapi.co/api/v2/pokemon/pikachu`)
+.then(res => {
+  console.log(res);
+  console.log(res.data.sprites.front_default);
+  const src = res.data.sprites.front_default;
+  img.src = src;
+  body.append(img);
+})
